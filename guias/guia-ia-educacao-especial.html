@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>IA e Educação Especial | AEI8 – PALDIM</title>
+
+  <meta name="description" content="Guia prático para professores sobre Inteligência Artificial, Educação Especial, inclusão, acessibilidade, diferenciação pedagógica e uso seguro da IA, no âmbito da AEI8 – PALDIM | TEIP4." />
+  <meta name="author" content="Ana Margarida Fonseca" />
+
+  <style>
+    :root {
+      --navy: #0B1F3A;
+      --blue: #1F4E79;
+      --teal: #2EC4B6;
+      --light: #F2F4F7;
+      --white: #FFFFFF;
+      --ink: #1C2430;
+      --muted: #5B6675;
+      --soft-blue: #EAF2F8;
+      --soft-teal: #E9FAF8;
+      --soft-yellow: #FFF8DE;
+      --yellow: #F7D774;
+      --warning: #FFF4D6;
+      --warning-border: #E6B800;
+      --danger-soft: #FDECEC;
+      --danger: #A83232;
+      --shadow: 0 14px 35px rgba(11, 31, 58, 0.12);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% 6%, rgba(46, 196, 182, 0.14), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(247, 215, 116, 0.18), transparent 28%),
+        linear-gradient(135deg, #F8FAFC 0%, #EEF7F5 55%, #F2F4F7 100%);
+      color: var(--ink);
+      line-height: 1.58;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    header {
+      background:
+        radial-gradient(circle at 88% 18%, rgba(46, 196, 182, 0.34), transparent 28%),
+        linear-gradient(135deg, var(--navy), var(--blue));
+      color: var(--white);
+      padding: 52px 24px 44px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--white);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 999px;
+      padding: 9px 14px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      background: rgba(46,196,182,0.24);
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(46, 196, 182, 0.16);
+      color: var(--white);
+      border: 1px solid rgba(46, 196, 182, 0.55);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4.4vw, 3.4rem);
+      line-height: 1.08;
+      margin: 0 auto 18px;
+      max-width: 1000px;
+      letter-spacing: -0.035em;
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(0.98rem, 1.65vw, 1.16rem);
+      color: rgba(255,255,255,0.88);
+    }
+
+    .author-note {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.76);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 56px;
+    }
+
+    .quick-note {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(11,31,58,0.08);
+      border-left: 8px solid var(--teal);
+      border-radius: 22px;
+      padding: 20px 22px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      color: var(--muted);
+    }
+
+    .quick-note strong {
+      color: var(--navy);
+    }
+
+    .toc {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(11,31,58,0.08);
+      border-radius: 30px;
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .toc-kicker {
+      color: var(--blue);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      margin: 0 0 6px;
+    }
+
+    .toc h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+    }
+
+    .toc-hint {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 380px;
+      text-align: right;
+      margin: 0;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+    }
+
+    .toc-grid a {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 74px;
+      text-decoration: none;
+      border-radius: 20px;
+      padding: 13px 14px;
+      background: #F8FAFC;
+      border: 1px solid rgba(11,31,58,0.08);
+      color: var(--navy);
+      transition: 0.18s ease;
+    }
+
+    .toc-grid a:hover,
+    .toc-grid a:focus {
+      transform: translateY(-2px);
+      background: var(--soft-teal);
+      border-color: rgba(46,196,182,0.35);
+      outline: none;
+      box-shadow: 0 10px 24px rgba(11,31,58,0.08);
+    }
+
+    .toc-grid a.featured {
+      background: var(--soft-yellow);
+      border-color: rgba(230,184,0,0.35);
+    }
+
+    .toc-number {
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .toc-label {
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    section {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3.2vw, 34px);
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 24px;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.55vw, 2.05rem);
+      margin: 0 0 18px;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      color: var(--blue);
+      margin-top: 28px;
+      font-size: 1.08rem;
+    }
+
+    .lead {
+      font-size: 1.02rem;
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    .big-idea {
+      background: var(--soft-teal);
+      border-left: 8px solid var(--teal);
+      border-radius: 16px;
+      padding: 18px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 20px 0;
+    }
+
+    .warning {
+      background: var(--warning);
+      border: 1px solid var(--warning-border);
+      border-left: 8px solid var(--warning-border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .danger {
+      background: var(--danger-soft);
+      border: 1px solid rgba(168, 50, 50, 0.25);
+      border-left: 8px solid var(--danger);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin: 20px 0;
+    }
+
+    .danger strong {
+      color: var(--danger);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--soft-blue);
+      border: 1px solid #D9E7F2;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .card strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .prompt-box {
+      background: #F8FAFC;
+      border: 1px solid rgba(31,78,121,0.14);
+      border-left: 8px solid var(--blue);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+
+    .prompt-box strong {
+      color: var(--navy);
+    }
+
+    .placeholder {
+      background: #EEF4F8;
+      color: var(--navy);
+      border-radius: 6px;
+      padding: 2px 5px;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 8px;
+      overflow: hidden;
+      border-radius: 14px;
+      display: block;
+      overflow-x: auto;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #E2E8F0;
+      text-align: left;
+      vertical-align: top;
+      min-width: 190px;
+    }
+
+    th {
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background: #FAFBFC;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      margin-bottom: 6px;
+    }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .check {
+      background: var(--soft-teal);
+      border: 1px solid #C8F1EC;
+      border-radius: 18px;
+      padding: 18px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .step {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 18px;
+      padding: 18px;
+      position: relative;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      background: var(--teal);
+      color: var(--navy);
+      border-radius: 50%;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      margin: 0;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .quote {
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      color: var(--white);
+      padding: 24px;
+      border-radius: 22px;
+      font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+      font-weight: 800;
+      line-height: 1.35;
+      margin-top: 24px;
+    }
+
+    .back-top {
+      display: inline-flex;
+      margin-top: 18px;
+      text-decoration: none;
+      color: var(--navy);
+      background: var(--soft-blue);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-weight: 850;
+      font-size: 0.86rem;
+    }
+
+    .back-top:hover {
+      background: var(--soft-teal);
+    }
+
+    .footer {
+      margin: 46px auto 0;
+      background: var(--navy);
+      color: var(--white);
+      border-top: 7px solid var(--teal);
+      padding: 38px 24px;
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .footer-kicker {
+      color: var(--teal);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.86rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-description {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.98rem;
+      line-height: 1.58;
+      margin-bottom: 18px;
+    }
+
+    .footer-authorship {
+      color: rgba(255,255,255,0.84);
+      font-size: 0.94rem;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .footer-authorship strong {
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .footer-privacy {
+      display: inline-block;
+      background: var(--light);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 800;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .toc-header {
+        display: block;
+      }
+
+      .toc-hint {
+        text-align: left;
+        margin-top: 8px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      main {
+        width: min(100% - 22px, 1180px);
+      }
+
+      header {
+        padding: 36px 20px 34px;
+      }
+
+      h1 {
+        font-size: clamp(1.9rem, 11vw, 2.65rem);
+      }
+
+      .toc {
+        padding: 18px;
+        border-radius: 24px;
+      }
+
+      .toc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toc-grid a {
+        min-height: auto;
+      }
+
+      section {
+        border-radius: 20px;
+      }
+
+      th,
+      td {
+        min-width: 220px;
+      }
+
+      .footer-privacy {
+        display: block;
+        border-radius: 18px;
+      }
+    }
+
+    @media print {
+      .toc,
+      .back-link,
+      .back-top {
+        display: none;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      header,
+      section {
+        box-shadow: none;
+      }
+
+      section {
+        break-inside: avoid;
+        border: 1px solid #E2E8F0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="back-link" href="../index.html">← Voltar ao Portal dos Professores</a>
+    <div class="tag">AEI8 – PALDIM | TEIP4</div>
+    <h1>IA e Educação Especial</h1>
+    <p>
+      Guia prático para professores: apoio à inclusão, acessibilidade, diferenciação pedagógica,
+      acompanhamento, comunicação e registo, sempre com proteção de dados e sem informação sensível.
+    </p>
+    <p class="author-note">
+      Conceção pedagógica, estruturação de conteúdos e desenvolvimento:
+      Ana Margarida Fonseca — Professora e Formadora.
+    </p>
+  </header>
+
+  <main>
+    <div class="quick-note">
+      <strong>Nota:</strong> este guia apoia a reflexão pedagógica e a criação de recursos inclusivos.
+      Não substitui a avaliação especializada, os procedimentos legais, a equipa multidisciplinar,
+      o conhecimento profissional dos docentes nem as orientações da escola.
+    </div>
+
+    <section class="toc" id="indice" aria-label="Índice do guia">
+      <div class="toc-header">
+        <div>
+          <p class="toc-kicker">Índice visual</p>
+          <h2>Escolha o foco de trabalho</h2>
+        </div>
+        <p class="toc-hint">
+          Use estes botões para navegar rapidamente pelo guia.
+        </p>
+      </div>
+
+      <div class="toc-grid">
+        <a href="#sobre" class="featured">
+          <span class="toc-number">01</span>
+          <span class="toc-label">Sobre este guia</span>
+        </a>
+
+        <a href="#principios">
+          <span class="toc-number">02</span>
+          <span class="toc-label">Princípios de uso</span>
+        </a>
+
+        <a href="#seguranca">
+          <span class="toc-number">03</span>
+          <span class="toc-label">Segurança e privacidade</span>
+        </a>
+
+        <a href="#prompt">
+          <span class="toc-number">04</span>
+          <span class="toc-label">Bom prompt inclusivo</span>
+        </a>
+
+        <a href="#perfis">
+          <span class="toc-number">05</span>
+          <span class="toc-label">Perfis e barreiras</span>
+        </a>
+
+        <a href="#atividades">
+          <span class="toc-number">06</span>
+          <span class="toc-label">Atividades acessíveis</span>
+        </a>
+
+        <a href="#monitorizacao">
+          <span class="toc-number">07</span>
+          <span class="toc-label">Monitorização</span>
+        </a>
+
+        <a href="#comunicacao">
+          <span class="toc-number">08</span>
+          <span class="toc-label">Comunicação clara</span>
+        </a>
+
+        <a href="#documentos">
+          <span class="toc-number">09</span>
+          <span class="toc-label">Documentos de trabalho</span>
+        </a>
+
+        <a href="#articulacao">
+          <span class="toc-number">10</span>
+          <span class="toc-label">Articulação com docentes</span>
+        </a>
+
+        <a href="#familias">
+          <span class="toc-number">11</span>
+          <span class="toc-label">Famílias</span>
+        </a>
+
+        <a href="#barreiras">
+          <span class="toc-number">12</span>
+          <span class="toc-label">Barreiras e facilitadores</span>
+        </a>
+
+        <a href="#evidencias">
+          <span class="toc-number">13</span>
+          <span class="toc-label">Evidências</span>
+        </a>
+
+        <a href="#limites">
+          <span class="toc-number">14</span>
+          <span class="toc-label">Limites da IA</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <h2>1. Sobre este guia</h2>
+      <p class="lead">
+        Este recurso apoia professores na utilização ética, segura e pedagógica da Inteligência Artificial
+        em contextos de inclusão, acessibilidade, diferenciação pedagógica e Educação Especial,
+        no âmbito da AEI8 – PALDIM | TEIP4.
+      </p>
+
+      <p>
+        A IA pode ajudar a pensar adaptações, criar materiais acessíveis, organizar observações,
+        preparar comunicação clara com professores e famílias, apoiar a monitorização da evolução dos alunos
+        e estruturar documentos de trabalho.
+      </p>
+
+      <div class="big-idea">
+        A IA deve ajudar a reduzir barreiras à aprendizagem e à participação.
+        O foco não é o rótulo do aluno; é a resposta educativa, os apoios,
+        os contextos e a evolução observável.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="principios">
+      <h2>2. Princípios de uso em Educação Especial</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Princípio</th>
+            <th>Aplicação prática</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Inclusão</strong></td>
+            <td>Usar a IA para aumentar acesso, participação, comunicação, autonomia e sucesso nas aprendizagens.</td>
+          </tr>
+          <tr>
+            <td><strong>Abordagem multinível</strong></td>
+            <td>Pensar apoios universais, seletivos e adicionais, articulando respostas de sala de aula, apoio especializado e recursos da escola.</td>
+          </tr>
+          <tr>
+            <td><strong>Foco nas barreiras</strong></td>
+            <td>Descrever dificuldades observáveis, contextos, facilitadores e obstáculos, evitando reduzir o aluno a uma categoria clínica.</td>
+          </tr>
+          <tr>
+            <td><strong>Rigor profissional</strong></td>
+            <td>Validar tudo com o conhecimento do professor, da equipa, dos documentos oficiais e da realidade concreta do aluno.</td>
+          </tr>
+          <tr>
+            <td><strong>Privacidade</strong></td>
+            <td>Nunca inserir nomes, fotografias, relatórios clínicos, avaliações identificáveis ou dados sensíveis em ferramentas de IA.</td>
+          </tr>
+          <tr>
+            <td><strong>Colaboração</strong></td>
+            <td>Usar a IA para preparar melhor a articulação, não para substituir o trabalho colaborativo entre profissionais.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="seguranca">
+      <h2>3. Segurança, privacidade e dados sensíveis</h2>
+
+      <div class="danger">
+        <strong>Regra fundamental:</strong> não introduza em ferramentas de IA dados pessoais,
+        clínicos, psicológicos, familiares, sociais, avaliativos ou comportamentais que possam identificar um aluno.
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <strong>Não colocar nomes</strong>
+          <p>Use descrições genéricas, perfis fictícios ou situações anonimizadas.</p>
+        </div>
+
+        <div class="card">
+          <strong>Não carregar relatórios</strong>
+          <p>Relatórios clínicos, psicológicos, terapêuticos ou documentos internos não devem ser usados como input direto.</p>
+        </div>
+
+        <div class="card">
+          <strong>Não usar fotografias sensíveis</strong>
+          <p>Evite imagens de alunos, trabalhos identificáveis ou registos com dados pessoais.</p>
+        </div>
+
+        <div class="card">
+          <strong>Validar antes de usar</strong>
+          <p>Todas as sugestões da IA devem ser revistas por profissionais responsáveis.</p>
+        </div>
+      </div>
+
+      <h3>Formulação segura</h3>
+      <div class="prompt-box">
+        Tenho uma situação pedagógica fictícia e anonimizada. Um aluno do
+        <span class="placeholder">[ano]</span> revela dificuldades observáveis em
+        <span class="placeholder">[competência/tarefa]</span>, sobretudo quando
+        <span class="placeholder">[contexto]</span>. Sugere estratégias pedagógicas inclusivas,
+        sem diagnóstico, sem rótulos clínicos e sem pressupor informação que não foi fornecida.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="prompt">
+      <h2>4. Como construir um bom prompt inclusivo</h2>
+
+      <p class="lead">
+        Um prompt inclusivo deve partir de barreiras observáveis, objetivos de participação,
+        contexto de aprendizagem e apoios possíveis. Deve evitar diagnósticos, rótulos e conclusões automáticas.
+      </p>
+
+      <div class="quote">
+        Contexto + barreira observável + objetivo + recursos disponíveis + apoios possíveis + cuidado ético
+      </div>
+
+      <h3>Modelo-base</h3>
+      <div class="prompt-box">
+        Age como um professor experiente em inclusão e diferenciação pedagógica.
+        Quero adaptar uma atividade de <span class="placeholder">[disciplina]</span>
+        para alunos do <span class="placeholder">[ano]</span>. A atividade original é:
+        <span class="placeholder">[descrever atividade]</span>.
+        Alguns alunos apresentam dificuldades observáveis em
+        <span class="placeholder">[competência/barreira]</span>.
+        Propõe adaptações acessíveis, mantendo o objetivo essencial da aprendizagem,
+        sem baixar expectativas e sem usar dados pessoais ou diagnósticos.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="perfis">
+      <h2>5. Prompts para analisar perfis, barreiras e apoios</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Objetivo</th>
+            <th>Prompt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill">Identificar barreiras</span></td>
+            <td>Analisa esta atividade: <strong>[descrever atividade]</strong>. Identifica possíveis barreiras de acesso, compreensão, comunicação, atenção, autonomia e participação.</td>
+          </tr>
+          <tr>
+            <td><span class="pill">Pensar apoios</span></td>
+            <td>Para cada barreira identificada, sugere apoios pedagógicos possíveis, distinguindo apoios universais, seletivos e adicionais.</td>
+          </tr>
+          <tr>
+            <td><span class="pill">Evitar rótulos</span></td>
+            <td>Reformula esta descrição para que se centre em comportamentos observáveis, contextos e necessidades de apoio, evitando linguagem clínica ou rotuladora.</td>
+          </tr>
+          <tr>
+            <td><span class="pill">Promover autonomia</span></td>
+            <td>Sugere estratégias para aumentar progressivamente a autonomia do aluno nesta tarefa: <strong>[tarefa]</strong>, com redução gradual do apoio.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="atividades">
+      <h2>6. Prompts para criar atividades acessíveis</h2>
+
+      <div class="grid">
+        <div class="card">
+          <strong>Instruções claras</strong>
+          <p>Peça à IA para simplificar instruções sem infantilizar nem retirar rigor.</p>
+        </div>
+
+        <div class="card">
+          <strong>Vários formatos</strong>
+          <p>Transforme uma tarefa escrita em versão oral, visual, guiada ou por etapas.</p>
+        </div>
+
+        <div class="card">
+          <strong>Apoios graduados</strong>
+          <p>Crie versões com apoio elevado, apoio intermédio e autonomia progressiva.</p>
+        </div>
+
+        <div class="card">
+          <strong>Critérios visíveis</strong>
+          <p>Construa checklists simples para tornar o sucesso mais explícito.</p>
+        </div>
+      </div>
+
+      <h3>Prompt para atividade acessível</h3>
+      <div class="prompt-box">
+        Cria uma versão acessível desta atividade:
+        <span class="placeholder">[colar/descrever atividade]</span>.
+        Mantém o objetivo essencial, mas organiza a tarefa por etapas,
+        inclui instruções claras, exemplo inicial, checklist de apoio,
+        opção de resposta alternativa e critério simples de sucesso.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="monitorizacao">
+      <h2>7. Prompts para monitorização e acompanhamento</h2>
+
+      <p class="lead">
+        A IA pode ajudar a estruturar grelhas simples de observação e monitorização,
+        desde que não sejam introduzidos dados pessoais ou identificáveis.
+      </p>
+
+      <div class="warning">
+        <strong>Importante:</strong> use campos genéricos, dados anonimizados e descrições pedagógicas.
+        A IA pode ajudar a organizar a grelha, mas não deve armazenar dados reais de alunos.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Necessidade</th>
+            <th>Prompt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Grelha simples</td>
+            <td>Cria uma grelha simples de monitorização para a competência <strong>[competência]</strong>. Inclui data, contexto, tarefa, nível de apoio, resposta observada, estratégia usada, resultado e próximo passo. Não incluir campos de dados pessoais.</td>
+          </tr>
+          <tr>
+            <td>Evolução semanal</td>
+            <td>Cria um modelo de síntese semanal para registar evolução observável numa competência, com foco em progressos, barreiras, facilitadores e próximos passos.</td>
+          </tr>
+          <tr>
+            <td>Redução de apoio</td>
+            <td>Propõe uma forma de monitorizar a redução gradual de apoio numa tarefa, distinguindo apoio total, apoio parcial, pista verbal, pista visual e autonomia.</td>
+          </tr>
+          <tr>
+            <td>Participação</td>
+            <td>Cria indicadores simples para observar participação numa atividade de grupo, sem avaliar a pessoa, mas sim comportamentos observáveis e condições de participação.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="comunicacao">
+      <h2>8. Prompts para comunicação clara</h2>
+
+      <p class="lead">
+        A IA pode ajudar a tornar mensagens mais claras, respeitosas e acessíveis,
+        mas qualquer comunicação deve ser validada por quem conhece o contexto.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <strong>Comunicação com docentes</strong>
+          <p>Preparar sínteses breves de estratégias, cuidados e próximos passos.</p>
+        </div>
+
+        <div class="card">
+          <strong>Comunicação com famílias</strong>
+          <p>Escrever mensagens claras, empáticas e sem linguagem técnica excessiva.</p>
+        </div>
+
+        <div class="card">
+          <strong>Comunicação com alunos</strong>
+          <p>Reformular instruções, critérios e feedback em linguagem compreensível.</p>
+        </div>
+      </div>
+
+      <h3>Prompt seguro</h3>
+      <div class="prompt-box">
+        Reescreve esta mensagem de forma clara, empática e profissional:
+        <span class="placeholder">[colar mensagem sem dados identificáveis]</span>.
+        Mantém um tom respeitoso, evita linguagem clínica ou culpabilizante
+        e termina com uma proposta de articulação ou próximo passo.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="documentos">
+      <h2>9. Prompts para documentos de trabalho</h2>
+
+      <div class="danger">
+        <strong>Atenção:</strong> não coloque documentos internos, relatórios individuais,
+        atas, avaliações, medidas, processos ou dados de alunos em ferramentas de IA.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Documento de apoio</th>
+            <th>Uso seguro da IA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Checklist de observação</td>
+            <td>Pedir uma estrutura genérica, sem dados reais, para depois adaptar internamente.</td>
+          </tr>
+          <tr>
+            <td>Síntese pedagógica</td>
+            <td>Pedir um modelo de síntese com campos genéricos e linguagem profissional.</td>
+          </tr>
+          <tr>
+            <td>Plano de apoio à tarefa</td>
+            <td>Solicitar etapas, apoios graduados e critérios observáveis de progresso.</td>
+          </tr>
+          <tr>
+            <td>Guião de reunião</td>
+            <td>Criar uma agenda genérica para articulação entre docentes e técnicos.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Prompt para modelo genérico</h3>
+      <div class="prompt-box">
+        Cria um modelo genérico de documento de apoio para
+        <span class="placeholder">[finalidade]</span>, sem campos de dados pessoais.
+        Deve incluir objetivo, contexto pedagógico, barreiras observáveis,
+        estratégias propostas, responsáveis pela articulação, monitorização
+        e próximos passos.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="articulacao">
+      <h2>10. Prompts para articulação com docentes</h2>
+
+      <p class="lead">
+        A inclusão exige trabalho colaborativo. A IA pode ajudar a preparar a articulação,
+        organizar ideias e tornar orientações mais claras.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <strong>Identificar a barreira</strong>
+          <p>Que dificuldade surge na tarefa, contexto ou forma de participação?</p>
+        </div>
+
+        <div class="step">
+          <strong>Clarificar objetivo</strong>
+          <p>Que aprendizagem essencial deve ser mantida?</p>
+        </div>
+
+        <div class="step">
+          <strong>Propor apoio</strong>
+          <p>Que adaptação é simples, exequível e não reduz a ambição?</p>
+        </div>
+
+        <div class="step">
+          <strong>Definir evidência</strong>
+          <p>Como saberemos se o apoio está a funcionar?</p>
+        </div>
+      </div>
+
+      <h3>Prompt para articulação</h3>
+      <div class="prompt-box">
+        Prepara um guião breve para uma reunião de articulação entre docentes sobre uma dificuldade
+        pedagógica observável em <span class="placeholder">[tarefa/contexto]</span>.
+        O guião deve incluir perguntas para clarificar barreiras, estratégias possíveis,
+        responsabilidades, evidências a recolher e próximos passos.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="familias">
+      <h2>11. Prompts para comunicação e articulação com famílias</h2>
+
+      <p class="lead">
+        A comunicação com famílias deve ser humana, clara, respeitosa e situada.
+        A IA pode ajudar a melhorar a clareza da mensagem, mas não deve substituir
+        o cuidado profissional.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Situação</th>
+            <th>Prompt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Convite para reunião</td>
+            <td>Redige uma mensagem breve e empática para convidar uma família para uma reunião de articulação. Não incluir dados sensíveis nem linguagem alarmista.</td>
+          </tr>
+          <tr>
+            <td>Síntese de estratégia</td>
+            <td>Reformula esta orientação pedagógica em linguagem simples para família, mantendo rigor, respeito e foco nos apoios possíveis.</td>
+          </tr>
+          <tr>
+            <td>Próximos passos</td>
+            <td>Cria uma mensagem clara com três próximos passos combinados entre escola e família, usando linguagem positiva e objetiva.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning">
+        <strong>Antes de enviar:</strong> reveja sempre a mensagem, retire qualquer dado sensível
+        e confirme se o tom é adequado à situação concreta.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="barreiras">
+      <h2>12. Prompts para mapear barreiras e facilitadores</h2>
+
+      <div class="grid">
+        <div class="card">
+          <strong>Barreiras de acesso</strong>
+          <p>Formato, linguagem, tempo, ambiente, ruído, instruções ou materiais.</p>
+        </div>
+
+        <div class="card">
+          <strong>Barreiras de participação</strong>
+          <p>Interação, comunicação, gestão da tarefa, autonomia ou trabalho em grupo.</p>
+        </div>
+
+        <div class="card">
+          <strong>Facilitadores</strong>
+          <p>Apoios visuais, exemplos, rotinas, escolha, tecnologia, pares ou instruções por etapas.</p>
+        </div>
+
+        <div class="card">
+          <strong>Evidências</strong>
+          <p>O que observamos que indica progresso, dificuldade ou necessidade de ajuste?</p>
+        </div>
+      </div>
+
+      <h3>Prompt de análise</h3>
+      <div class="prompt-box">
+        Analisa esta atividade de sala de aula:
+        <span class="placeholder">[descrever atividade]</span>.
+        Identifica possíveis barreiras de acesso, participação, comunicação e autonomia.
+        Para cada barreira, sugere um facilitador simples, exequível e adequado
+        ao contexto escolar.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="evidencias">
+      <h2>13. Evidências de aprendizagem e participação</h2>
+
+      <p class="lead">
+        A monitorização deve centrar-se em evidências observáveis, úteis para ajustar apoios
+        e compreender a evolução do aluno nos contextos reais de aprendizagem.
+      </p>
+
+      <div class="checklist">
+        <div class="check">Resposta observada numa tarefa específica.</div>
+        <div class="check">Nível de apoio necessário para iniciar ou concluir a tarefa.</div>
+        <div class="check">Estratégias que facilitaram a participação.</div>
+        <div class="check">Facilitadores que melhoraram desempenho.</div>
+        <div class="check">Barreiras que persistem em determinados contextos.</div>
+        <div class="check">Evolução semanal numa competência específica.</div>
+        <div class="check">Feedback dos docentes da turma.</div>
+        <div class="check">Síntese de próximos passos acordados.</div>
+      </div>
+
+      <h3>Prompt para criar uma grelha rápida</h3>
+      <div class="prompt-box">
+        Cria uma grelha simples de monitorização para a competência
+        <span class="placeholder">[competência]</span>.
+        A grelha deve permitir registar data, contexto, tarefa, nível de apoio,
+        resposta observada, estratégia usada, resultado e próximo passo.
+        Não incluir campos de dados pessoais.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+
+    <section id="limites">
+      <h2>14. Limites da IA em Educação Especial</h2>
+
+      <div class="grid">
+        <div class="card">
+          <strong>A IA não diagnostica</strong>
+          <p>Não substitui avaliação especializada, clínica, psicológica, terapêutica ou pedagógica formal.</p>
+        </div>
+
+        <div class="card">
+          <strong>A IA não decide medidas</strong>
+          <p>Pode ajudar a organizar ideias, mas as decisões pertencem às equipas e aos procedimentos da escola.</p>
+        </div>
+
+        <div class="card">
+          <strong>A IA pode errar</strong>
+          <p>Estratégias sugeridas podem ser genéricas, inadequadas ou pouco exequíveis.</p>
+        </div>
+
+        <div class="card">
+          <strong>A IA não conhece o aluno</strong>
+          <p>O professor conhece o contexto, a relação, a história, os interesses e as respostas reais do aluno.</p>
+        </div>
+
+        <div class="card">
+          <strong>A IA não garante inclusão</strong>
+          <p>A inclusão depende de práticas, recursos, colaboração, tempo, formação e decisões institucionais.</p>
+        </div>
+
+        <div class="card">
+          <strong>A IA não substitui a família</strong>
+          <p>A comunicação deve ser humana, respeitosa, situada e validada antes de ser enviada.</p>
+        </div>
+      </div>
+
+      <div class="quote">
+        Em Educação Especial, a IA só é útil se proteger a dignidade do aluno,
+        apoiar o professor e melhorar a participação real na aprendizagem.
+      </div>
+
+      <a class="back-top" href="#indice">↑ Voltar ao índice</a>
+    </section>
+  </main>
+
+  <footer class="footer" aria-label="Informação sobre o projeto">
+    <div class="footer-inner">
+      <p class="footer-kicker">
+        IA e Educação Especial | AEI8 – PALDIM | TEIP4
+      </p>
+
+      <p class="footer-description">
+        Recurso educativo para professores sobre inclusão, acessibilidade,
+        diferenciação pedagógica, monitorização, comunicação e uso seguro
+        da Inteligência Artificial em contextos de Educação Especial.
+      </p>
+
+      <p class="footer-description">
+        Desenvolvido no âmbito do plano de ação de literacia digital, inteligência artificial
+        e cidadania digital associado à AEI8 – PALDIM | TEIP4.
+      </p>
+
+      <p class="footer-authorship">
+        Conceção pedagógica, estruturação de conteúdos e desenvolvimento:<br>
+        <strong>Ana Margarida Fonseca — Professora e Formadora</strong>
+      </p>
+
+      <p class="footer-privacy">
+        Recurso estático, publicado via GitHub Pages, sem login, sem formulários,
+        sem backend próprio e sem recolha ativa de dados.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const links = document.querySelectorAll('a[href^="#"]');
+
+    links.forEach(link => {
+      link.addEventListener('click', event => {
+        const href = link.getAttribute('href');
+        const target = document.querySelector(href);
+
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
